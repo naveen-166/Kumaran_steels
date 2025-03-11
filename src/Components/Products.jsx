@@ -89,7 +89,7 @@ import React from 'react';
 function Products() {
     return (
         <div className='flex justify-center items-center min-h-screen bg-gray-900 p-6'>
-            <div className='rounded-lg bg-black bg-opacity-80 shadow-2xl shadow-black p-8 w-full max-w-6xl'>
+            <div className='rounded-lg shadow-2xl shadow-black p- w-full max-w-6xl'>
                 <div className='grid grid-cols-5 gap-4'>
                     {productImages.map((img, index) => (
                         <div key={index} className='bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105'>

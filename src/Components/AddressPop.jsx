@@ -6,6 +6,7 @@ import {
   DialogBody,
   DialogFooter,
 } from "@material-tailwind/react";
+import { BiLocationPlus } from "react-icons/bi";
 
 export default function AddressPop() {
   const [open, setOpen] = React.useState(false);
@@ -34,7 +35,7 @@ export default function AddressPop() {
         }}
         className="max-w-xl rounded-lg shadow-lg bg-white bg-opacity-85"
       >
-        <DialogHeader className="text-xl font-semibold text-gray-800">Address</DialogHeader>
+        <DialogHeader className="text-xl font-semibold text-gray-800"><BiLocationPlus/> Address</DialogHeader>
         <DialogBody className="text-gray-700 space-y-2">
           <p className="text">
             <strong>322/13, KanjiKovil Road, Near Bypass,<br /> Perundurai, Erode-Dt</strong>

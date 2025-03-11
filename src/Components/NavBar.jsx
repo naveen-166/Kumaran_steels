@@ -38,11 +38,14 @@ export default function NavBar() {
         </div>
 
         {/* Call Button */}
-        <div className="ml-auto flex ">
-          <Button variant="gradient" color="green" className="px-6 py-3 text-white hover:bg-blue-600">
+        <div className="ml-auto flex space-x-4 ">
+          <Button variant="gradient" color="green" className="px-6 py-3 text-white hover:bg-blue-600"
+          href="tel:+919159800">
             Call Now
           </Button>
+          <span className=" mr-3 mt-1">
           <AddressPop/>
+          </span>
         </div>
       </div>
     </nav>

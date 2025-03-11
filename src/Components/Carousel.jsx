@@ -7,12 +7,13 @@ import {
 
 export default function CarouselC() {
   return (
-    <div className="flex bg-gray-600 justify-center space-x-6 pl-4 pr-4 overflow-x-hidden pt-10 pb-10 h-[42rem]">      {/* Check the height  */}
+    <div className="flex bg-gray-600 justify-center items-center space-x-6 pl-4 pr-4 overflow-x-hidden pt-10 pb-10 h-screen">      {/* Check the height  */}
       {/* First Card */}
+      
       <Card
         shadow={true}
         floated={true}
-        className="relative grid h-[36rem] w-full max-w-[28rem] items-end justify-center overflow-hidden text-center rounded-lg transition-all duration-500 ease-in-out transform hover:scale-105 hover:shadow-2xl"
+        className="relative grid h-[20rem] hover:h-[25rem] w-full w-[50rem] hover:w-[70rem] items-end justify-center overflow-hidden text-center rounded-lg transition-all duration-500 ease-in-out transform hover:scale-105 hover:shadow-2xl"
       >
         <CardHeader
           floated={false}
@@ -34,7 +35,7 @@ export default function CarouselC() {
             color="white"
             className="text-sm md:text-base opacity-75"
           >
-            Premium TMT Bars for construction
+            Premium TMT Bars
           </Typography>
         </CardBody>
       </Card>
@@ -42,7 +43,7 @@ export default function CarouselC() {
       {/* Second Card */}
       <Card
         shadow={true}
-        className="relative grid h-[36rem] w-full max-w-[28rem] items-end justify-center overflow-hidden text-center rounded-lg transition-all duration-500 ease-in-out transform hover:scale-105 hover:shadow-2xl"
+        className="relative grid h-[20rem] hover:h-[25rem] w-full w-[50rem] hover:w-[70rem] items-end justify-center overflow-hidden text-center rounded-lg transition-all duration-500 ease-in-out transform hover:scale-105 hover:shadow-2xl"
       >
         <CardHeader
           floated={false}
@@ -72,7 +73,7 @@ export default function CarouselC() {
       {/* Third Card */}
       <Card
         shadow={true}
-        className="relative grid h-[36rem] w-full max-w-[28rem] items-end justify-center overflow-hidden text-center rounded-lg transition-all duration-500 ease-in-out transform hover:scale-105 hover:shadow-2xl"
+        className="relative grid h-[20rem] hover:h-[25rem] w-full w-[50rem] hover:w-[70rem] items-end justify-center overflow-hidden text-center rounded-lg transition-all duration-500 ease-in-out transform hover:scale-105 hover:shadow-2xl"
       >
         <CardHeader
           floated={true}
@@ -102,7 +103,7 @@ export default function CarouselC() {
       {/* Fourth Card */}
       <Card
         shadow={true}
-        className="relative grid h-[36rem] w-full max-w-[28rem] items-end justify-center overflow-hidden text-center rounded-lg transition-all duration-500 ease-in-out transform hover:scale-105 hover:shadow-2xl"
+        className="relative grid h-[20rem] hover:h-[25rem] w-full w-[50rem] hover:w-[70rem] items-end justify-center overflow-hidden text-center rounded-lg transition-all duration-500 ease-in-out transform hover:scale-105 hover:shadow-2xl"
       >
         <CardHeader
           floated={false}
@@ -124,7 +125,7 @@ export default function CarouselC() {
             color="white"
             className="text-sm md:text-base opacity-75"
           >
-            Tailored designs for your business
+            Tailored designs
           </Typography>
         </CardBody>
       </Card>

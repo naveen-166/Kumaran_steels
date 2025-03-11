@@ -7,7 +7,13 @@ module.exports = withMT({
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      oswald: ['Oswald', 'sans-serif'],
+      edu: ['Edu AU VIC WA NT Hand'],
+      Courgette: ['Courgette'],
+      Kanit: ['Kanit'],
+
+    },
   },
   plugins: [],
 })
