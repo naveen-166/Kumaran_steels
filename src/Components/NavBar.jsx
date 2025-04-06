@@ -3,7 +3,7 @@ import AddressPop from "./AddressPop";
 
 export default function NavBar() {
   return (
-    <nav className=" bg- shadow-md rounded-md  lg:py-3">
+    <nav className=" relative bg-red-50 shadow-md rounded-md  lg:py-3">
       <div className="container flex flex-wrap items-center mx-auto text-slate-800">
         {/* Left Side: Company Logo */}
         <a href="#" className="mr-4 block cursor-pointer py-1.5 text-base text-slate-800 font-semibold">
