@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sri Kumaran Steels - Premium Construction Materials</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1605152276897-4f618f831968?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(5px);
+        }
+    </style>
+</head>
+<body class="font-sans">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        // Header Component
+        function Header() {
+            const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+
+            const toggleMobileMenu = () => {
+                setMobileMenuOpen(!mobileMenuOpen);
+            };
+
+            return (
+                <header className="bg-gray-900 text-white sticky top-0 z-50 shadow-lg">
+                    <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+                        <div className="flex items-center">
+                            <i className="fas fa-industry text-2xl text-yellow-500 mr-2"></i>
+                            <h1 className="text-xl font-bold">Sri Kumaran Steels</h1>
+                        </div>
+                        <nav className="hidden md:flex space-x-8">
+                            <a href="#home" className="hover:text-yellow-400 transition">Home</a>
+                            <a href="#products" className="hover:text-yellow-400 transition">Products</a>
+                            <a href="#services" className="hover:text-yellow-400 transition">Services</a>
+                            <a href="#about" className="hover:text-yellow-400 transition">About Us</a>
+                            <a href="#testimonials" className="hover:text-yellow-400 transition">Testimonials</a>
+                            <a href="#contact" className="hover:text-yellow-400 transition">Contact</a>
+                        </nav>
+                        <button className="md:hidden text-xl" onClick={toggleMobileMenu}>
+                            <i className="fas fa-bars"></i>
+                        </button>
+                    </div>
+                    {/* Mobile Menu */}
+                    <div className={`md:hidden ${mobileMenuOpen ? 'block' : 'hidden'} bg-gray-800 w-full py-2`}>
+                        <div className="container mx-auto px-4 flex flex-col space-y-3">
+                            <a href="#home" className="hover:text-yellow-400 transition py-1">Home</a>
+                            <a href="#products" className="hover:text-yellow-400 transition py-1">Products</a>
+                            <a href="#services" className="hover:text-yellow-400 transition py-1">Services</a>
+                            <a href="#about" className="hover:text-yellow-400 transition py-1">About Us</a>
+                            <a href="#testimonials" className="hover:text-yellow-400 transition py-1">Testimonials</a>
+                            <a href="#contact" className="hover:text-yellow-400 transition py-1">Contact</a>
+                        </div>
+                    </div>
+                </header>
+            );
+        }
+
+        // Hero Component
+        function Hero() {
+            return (
+                <section id="home" className="hero min-h-screen flex items-center justify-center text-white">
+                    <div className="container mx-auto px-4 text-center">
+                        <h1 className="text-4xl md:text-6xl font-bold mb-6">Building Strong Foundations</h1>
+                        <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
+                            Premium quality TMT bars, cement, steel fencing, roofing solutions, and natural stone flooring
+                        </p>
+                        <div className="flex flex-col sm:flex-row justify-center gap-4">
+                            <a href="#products" className="bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold py-3 px-6 rounded-lg transition duration-300">
+                                Our Products <i className="fas fa-arrow-right ml-2"></i>
+                            </a>
+                            <a href="#contact" className="bg-transparent hover:bg-gray-800 border-2 border-white text-white font-bold py-3 px-6 rounded-lg transition duration-300">
+                                Contact Us <i className="fas fa-phone ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+            );
+        }
+
+        // Products Component
+        function Products() {
+            const products = [
+                {
+                    id: 1,
+                    icon: "fas fa-bars-staggered",
+                    title: "TMT Steel Bars",
+                    description: "High-quality thermo-mechanically treated bars with superior strength and durability for all construction needs.",
+                    tags: ["Fe 500D", "Fe 550D", "Corrosion Resistant"]
+                },
+                {
+                    id: 2,
+                    icon: "fas fa-cubes",
+                    title: "Premium Cement",
+                    description: "Top-grade cement from leading manufacturers ensuring strong and durable concrete structures.",
+                    tags: ["OPC 53 Grade", "PPC", "Waterproof"]
+                },
+                {
+                    id: 3,
+                    icon: "fas fa-border-style",
+                    title: "Steel Fencing",
+                    description: "Durable and secure fencing solutions for residential, commercial and industrial properties.",
+                    tags: ["Chain Link", "Barbed Wire", "Custom Designs"]
+                }
+            ];
+
+            return (
+                <section id="products" className="py-16 bg-gray-100">
+                    <div className="container mx-auto px-4">
+                        <div className="text-center mb-12">
+                            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Our Premium Products</h2>
+                            <div className="w-20 h-1 bg-yellow-500 mx-auto"></div>
+                        </div>
+                        
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {products.map(product => (
+                                <div key={product.id} className="product-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                                    <div className="h-48 bg-gray-200 flex items-center justify-center">
+                                        <i className={`${product.icon} text-6xl text-gray-700`}></i>
+                                    </div>
+                                    <div className="p-6">
+                                        <h3 className="text-xl font-bold text-gray-800 mb-2">{product.title}</h3>
+                                        <p className="text-gray-600 mb-4">{product.description}</p>
+                                        <div className="flex flex-wrap gap-2 mb-4">
+                                            {product.tags.map((tag, index) => (
+                                                <span key={index} className="bg-gray-200 px-3 py-1 rounded-full text-sm">{tag}</span>
+                                            ))}
+                                        </div>
+                                        <button className="text-yellow-600 font-semibold hover:text-yellow-700 transition">
+                                            Learn More <i className="fas fa-chevron-right ml-1"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+        }
+
+        // Services Component
+        function Services() {
+            const services = [
+                {
+                    id: 1,
+                    icon: "fas fa-fence",
+                    title: "Fencing Installation",
+                    description: "Professional installation of all types of steel fencing for residential, commercial and industrial properties.",
+                    benefits: ["Custom designs", "Durable materials", "Security solutions"]
+                },
+                {
+                    id: 2,
+                    icon: "fas fa-home",
+                    title: "Metal Sheet Roofing",
+                    description: "Expert installation of high-quality metal roofing sheets that provide excellent protection and durability.",
+                    benefits: ["Weather resistant", "Energy efficient", "Long lifespan"]
+                },
+                {
+                    id: 3,
+                    icon: "fas fa-border-all",
+                    title: "Natural Stone Flooring",
+                    description: "Beautiful and durable natural stone flooring installation for homes and commercial spaces.",
+                    benefits: ["Elegant finishes", "Easy maintenance", "Variety of stones"]
+                }
+            ];
+
+            return (
+                <section id="services" className="py-16 bg-white">
+                    <div className="container mx-auto px-4">
+                        <div className="text-center mb-12">
+                            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Our Professional Services</h2>
+                            <p className="text-gray-600 max-w-3xl mx-auto">
+                                Beyond supplying materials, we provide expert installation services for complete solutions
+                            </p>
+                            <div className="w-20 h-1 bg-yellow-500 mx-auto mt-4"></div>
+                        </div>
+                        
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            {services.map(service => (
+                                <div key={service.id} className="product-card bg-gray-50 rounded-lg overflow-hidden shadow-md transition duration-300 border border-gray-200">
+                                    <div className="h-48 bg-gray-100 flex items-center justify-center">
+                                        <i className={`${service.icon} text-6xl text-gray-700`}></i>
+                                    </div>
+                                    <div className="p-6">
+                                        <h3 className="text-xl font-bold text-gray-800 mb-2">{service.title}</h3>
+                                        <p className="text-gray-600 mb-4">{service.description}</p>
+                                        <div className="mb-4">
+                                            <h4 className="font-medium text-gray-800 mb-2">Key Benefits:</h4>
+                                            <ul className="list-disc list-inside text-gray-600 space-y-1">
+                                                {service.benefits.map((benefit, index) => (
+                                                    <li key={index}>{benefit}</li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                        <button className="text-yellow-600 font-semibold hover:text-yellow-700 transition">
+                                            Get a Quote <i className="fas fa-chevron-right ml-1"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+        }
+
+        // About Component
+        function About() {
+            return (
+                <section id="about" className="py-16 bg-gray-100">
+                    <div className="container mx-auto px-4">
+                        <div className="flex flex-col lg:flex-row items-center">
+                            <div className="lg:w-1/2 mb-8 lg:mb-0 lg:pr-12">
+                                <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                                    alt="Steel Factory" className="rounded-lg shadow-xl w-full"/>
+                            </div>
+                            <div className="lg:w-1/2">
+                                <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">About Sri Kumaran Steels</h2>
+                                <p className="text-gray-600 mb-4 leading-relaxed">
+                                    Established in 2005, Sri Kumaran Steels has been a trusted name in the construction materials industry, 
+                                    providing high-quality TMT bars, cement, steel fencing, roofing solutions, and natural stone flooring 
+                                    to builders, contractors, and homeowners across the region.
+                                </p>
+                                <p className="text-gray-600 mb-6 leading-relaxed">
+                                    With over 18 years of experience, we take pride in our commitment to quality, reliability, and customer 
+                                    satisfaction. Our products meet all industry standards and are sourced from reputable manufacturers.
+                                </p>
+                                <div className="grid grid-cols-2 gap-4 mb-6">
+                                    <div className="flex items-center">
+                                        <div className="bg-yellow-100 p-3 rounded-full mr-3">
+                                            <i className="fas fa-medal text-yellow-600"></i>
+                                        </div>
+                                        <span className="font-medium">Quality Assurance</span>
+                                    </div>
+                                    <div className="flex items-center">
+                                        <div className="bg-yellow-100 p-3 rounded-full mr-3">
+                                            <i className="fas fa-truck text-yellow-600"></i>
+                                        </div>
+                                        <span className="font-medium">Timely Delivery</span>
+                                    </div>
+                                    <div className="flex items-center">
+                                        <div className="bg-yellow-100 p-3 rounded-full mr-3">
+                                            <i className="fas fa-rupee-sign text-yellow-600"></i>
+                                        </div>
+                                        <span className="font-medium">Competitive Pricing</span>
+                                    </div>
+                                    <div className="flex items-center">
+                                        <div className="bg-yellow-100 p-3 rounded-full mr-3">
+                                            <i className="fas fa-headset text-yellow-600"></i>
+                                        </div>
+                                        <span className="font-medium">Customer Support</span>
+                                    </div>
+                                </div>
+                                <button className="bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold py-3 px-6 rounded-lg transition duration-300">
+                                    Read Our Story <i className="fas fa-book-open ml-2"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            );
+        }
+
+        // Testimonials Component
+        function Testimonials() {
+            const testimonials = [
+                {
+                    id: 1,
+                    name: "Rajesh Kumar",
+                    role: "Builder, Chennai",
+                    quote: "We've been using Sri Kumaran Steels for all our projects. Their TMT bars are of exceptional quality and their service is reliable. Highly recommended!",
+                    rating: 5
+                },
+                {
+                    id: 2,
+                    name: "Priya Suresh",
+                    role: "Homeowner, Coimbatore",
+                    quote: "The steel fencing we got for our property is excellent quality. It's been 3 years and still looks as good as new. Very happy with the purchase.",
+                    rating: 4.5
+                },
+                {
+                    id: 3,
+                    name: "Vikram Enterprises",
+                    role: "Construction Company",
+                    quote: "As a bulk buyer, we appreciate Sri Kumaran's consistent quality and on-time deliveries. Their competitive pricing helps us manage project costs effectively.",
+                    rating: 5
+                }
+            ];
+
+            return (
+                <section id="testimonials" className="py-16 bg-white">
+                    <div className="container mx-auto px-4">
+                        <div className="text-center mb-12">
+                            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">What Our Customers Say</h2>
+                            <div className="w-20 h-1 bg-yellow-500 mx-auto"></div>
+                        </div>
+                        
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            {testimonials.map(testimonial => (
+                                <div key={testimonial.id} className="testimonial-card p-6 rounded-lg shadow-md">
+                                    <div className="flex items-center mb-4">
+                                        <div className="w-12 h-12 rounded-full bg-gray-300 mr-4 overflow-hidden">
+                                            <i className="fas fa-user text-3xl text-gray-600 w-full h-full flex items-center justify-center"></i>
+                                        </div>
+                                        <div>
+                                            <h4 className="font-bold">{testimonial.name}</h4>
+                                            <p className="text-sm text-gray-500">{testimonial.role}</p>
+                                        </div>
+                                    </div>
+                                    <p className="text-gray-700 italic">
+                                        "{testimonial.quote}"
+                                    </p>
+                                    <div className="mt-4 text-yellow-500">
+                                        {[...Array(5)].map((_, i) => {
+                                            if (i < Math.floor(testimonial.rating)) {
+                                                return <i key={i} className="fas fa-star"></i>;
+                                            } else if (i === Math.floor(testimonial.rating) && testimonial.rating % 1 !== 0) {
+                                                return <i key={i} className="fas fa-star-half-alt"></i>;
+                                            } else {
+                                                return <i key={i} className="far fa-star"></i>;
+                                            }
+                                        })}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+        }
+
+        // Contact Component
+        function Contact() {
+            const [formData, setFormData] = React.useState({
+                name: '',
+                email: '',
+                phone: '',
+                message: ''
+            });
+
+            const handleChange = (e) => {
+                const { name, value } = e.target;
+                setFormData(prev => ({
+                    ...prev,
+                    [name]: value
+                }));
+            };
+
+            const handleSubmit = (e) => {
+                e.preventDefault();
+                alert(`Thank you, ${formData.name}! We'll contact you soon.`);
+                setFormData({
+                    name: '',
+                    email: '',
+                    phone: '',
+                    message: ''
+                });
+            };
+
+            return (
+                <section id="contact" className="py-16 bg-gray-900 text-white">
+                    <div className="container mx-auto px-4">
+                        <div className="text-center mb-12">
+                            <h2 className="text-3xl md:text-4xl font-bold mb-4">Get In Touch</h2>
+                            <p className="max-w-2xl mx-auto text-gray-300">Have questions or need a quote? Contact us today!</p>
+                            <div className="w-20 h-1 bg-yellow-500 mx-auto mt-4"></div>
+                        </div>
+                        
+                        <div className="flex flex-col lg:flex-row gap-8">
+                            <div className="lg:w-1/2">
+                                <form className="space-y-4" onSubmit={handleSubmit}>
+                                    <div>
+                                        <label htmlFor="name" className="block mb-1">Your Name</label>
+                                        <input 
+                                            type="text" 
+                                            id="name" 
+                                            name="name"
+                                            value={formData.name}
+                                            onChange={handleChange}
+                                            className="w-full px-4 py-2 rounded bg-gray-800 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                                            required
+                                        />
+                                    </div>
+                                    <div>
+                                        <label htmlFor="email" className="block mb-1">Email Address</label>
+                                        <input 
+                                            type="email" 
+                                            id="email" 
+                                            name="email"
+                                            value={formData.email}
+                                            onChange={handleChange}
+                                            className="w-full px-4 py-2 rounded bg-gray-800 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                                            required
+                                        />
+                                    </div>
+                                    <div>
+                                        <label htmlFor="phone" className="block mb-1">Phone Number</label>
+                                        <input 
+                                            type="tel" 
+                                            id="phone" 
+                                            name="phone"
+                                            value={formData.phone}
+                                            onChange={handleChange}
+                                            className="w-full px-4 py-2 rounded bg-gray-800 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                                            required
+                                        />
+                                    </div>
+                                    <div>
+                                        <label htmlFor="message" className="block mb-1">Your Message</label>
+                                        <textarea 
+                                            id="message" 
+                                            name="message"
+                                            value={formData.message}
+                                            onChange={handleChange}
+                                            rows="4" 
+                                            className="w-full px-4 py-2 rounded bg-gray-800 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                                            required
+                                        ></textarea>
+                                    </div>
+                                    <button type="submit" className="bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold py-3 px-6 rounded-lg transition duration-300 w-full">
+                                        Send Message <i className="fas fa-paper-plane ml-2"></i>
+                                    </button>
+                                </form>
+                            </div>
+                            
+                            <div className="lg:w-1/2">
+                                <div className="bg-gray-800 p-6 rounded-lg h-full">
+                                    <h3 className="text-xl font-bold mb-6">Contact Information</h3>
+                                    
+                                    <div className="space-y-4">
+                                        <div className="flex items-start">
+                                            <div className="bg-yellow-500 p-3 rounded-full mr-4">
+                                                <i className="fas fa-map-marker-alt text-white"></i>
+                                            </div>
+                                            <div>
+                                                <h4 className="font-medium">Our Address</h4>
+                                                <p className="text-gray-300">123 Steel Market Road, Industrial Area, Coimbatore, Tamil Nadu - 641021</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div className="flex items-start">
+                                            <div className="bg-yellow-500 p-3 rounded-full mr-4">
+                                                <i className="fas fa-phone-alt text-white"></i>
+                                            </div>
+                                            <div>
+                                                <h4 className="font-medium">Phone Numbers</h4>
+                                                <p className="text-gray-300">+91 98765 43210</p>
+                                                <p className="text-gray-300">0422 1234567</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div className="flex items-start">
+                                            <div className="bg-yellow-500 p-3 rounded-full mr-4">
+                                                <i className="fas fa-envelope text-white"></i>
+                                            </div>
+                                            <div>
+                                                <h4 className="font-medium">Email Address</h4>
+                                                <p className="text-gray-300">info@srikumaransteels.com</p>
+                                                <p className="text-gray-300">sales@srikumaransteels.com</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div className="flex items-start">
+                                            <div className="bg-yellow-500 p-3 rounded-full mr-4">
+                                                <i className="fas fa-clock text-white"></i>
+                                            </div>
+                                            <div>
+                                                <h4 className="font-medium">Working Hours</h4>
+                                                <p className="text-gray-300">Monday - Saturday: 9:00 AM - 8:00 PM</p>
+                                                <p className="text-gray-300">Sunday: 10:00 AM - 4:00 PM</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div className="mt-8">
+                                        <h4 className="font-medium mb-4">Follow Us</h4>
+                                        <div className="flex space-x-4">
+                                            <a href="#" className="bg-gray-700 hover:bg-blue-600 w-10 h-10 rounded-full flex items-center justify-center transition">
+                                                <i className="fab fa-facebook-f"></i>
+                                            </a>
+                                            <a href="#" className="bg-gray-700 hover:bg-blue-400 w-10 h-10 rounded-full flex items-center justify-center transition">
+                                                <i className="fab fa-twitter"></i>
+                                            </a>
+                                            <a href="#" className="bg-gray-700 hover:bg-pink-600 w-10 h-10 rounded-full flex items-center justify-center transition">
+                                                <i className="fab fa-instagram"></i>
+                                            </a>
+                                            <a href="#" className="bg-gray-700 hover:bg-blue-700 w-10 h-10 rounded-full flex items-center justify-center transition">
+                                                <i className="fab fa-linkedin-in"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            );
+        }
+
+        // Footer Component
+        function Footer() {
+            return (
+                <footer className="bg-gray-800 text-gray-300 py-8">
+                    <div className="container mx-auto px-4">
+                        <div className="flex flex-col md:flex-row justify-between items-center">
+                            <div className="mb-4 md:mb-0">
+                                <div className="flex items-center">
+                                    <i className="fas fa-industry text-2xl text-yellow-500 mr-2"></i>
+                                    <h2 className="text-xl font-bold">Sri Kumaran Steels</h2>
+                                </div>
+                                <p className="text-sm mt-2">Building the future with strength and reliability</p>
+                            </div>
+                            
+                            <div className="flex flex-col items-center md:items-end">
+                                <div className="flex space-x-6 mb-4">
+                                    <a href="#home" className="hover:text-yellow-400 transition">Home</a>
+                                    <a href="#products" className="hover:text-yellow-400 transition">Products</a>
+                                    <a href="#services" className="hover:text-yellow-400 transition">Services</a>
+                                    <a href="#about" className="hover:text-yellow-400 transition">About</a>
+                                    <a href="#contact" className="hover:text-yellow-400 transition">Contact</a>
+                                </div>
+                                <p className="text-sm">&copy; 2023 Sri Kumaran Steels. All Rights Reserved.</p>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            );
+        }
+
+        // BackToTop Component
+        function BackToTop() {
+            const [visible, setVisible] = React.useState(false);
+
+            React.useEffect(() => {
+                const toggleVisibility = () => {
+                    if (window.pageYOffset > 300) {
+                        setVisible(true);
+                    } else {
+                        setVisible(false);
+                    }
+                };
+
+                window.addEventListener('scroll', toggleVisibility);
+                return () => window.removeEventListener('scroll', toggleVisibility);
+            }, []);
+
+            const scrollToTop = () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            };
+
+            return (
+                <button 
+                    id="back-to-top" 
+                    onClick={scrollToTop}
+                    className={`fixed bottom-8 right-8 bg-yellow-500 text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center transition ${visible ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
+                >
+                    <i className="fas fa-arrow-up"></i>
+                </button>
+            );
+        }
+
+        // SmoothScrollLink Component
+        function SmoothScrollLink({ href, children, className, onClick }) {
+            const handleClick = (e) => {
+                e.preventDefault();
+                const targetId = href;
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+
+                if (onClick) {
+                    onClick();
+                }
+            };
+
+            return (
+                <a href={href} className={className} onClick={handleClick}>
+                    {children}
+                </a>
+            );
+        }
+
+        // Main App Component
+        function App() {
+            return (
+                <div className="font-sans">
+                    <Header />
+                    <Hero />
+                    <Products />
+                    <Services />
+                    <About />
+                    <Testimonials />
+                    <Contact />
+                    <Footer />
+                    <BackToTop />
+                </div>
+            );
+        }
+
+        // Render the app
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
