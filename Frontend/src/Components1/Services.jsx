@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 function Services() {
   const [services, setServices] = useState([]);
 
   useEffect(() => {
+    AOS.init({ duration: 1000, once: true });
+
     const fetchServices = async () => {
       try {
         const res = await axios.get('http://localhost:4000/services');
@@ -18,10 +22,12 @@ function Services() {
     fetchServices();
   }, []);
 
-  const ServiceCard = ({ service }) => (
+  const ServiceCard = ({ service, index }) => (
     <Link
       to={`/services/${service._id}`}
       className="bg-white rounded-lg overflow-hidden shadow hover:shadow-lg transition transform hover:-translate-y-1 border border-gray-200 cursor-pointer block"
+      data-aos="fade-up"
+      data-aos-delay={index * 100}
     >
       <div className="h-48 w-full bg-gray-100">
         <img
@@ -45,7 +51,7 @@ function Services() {
   return (
     <section id="services" className="py-16 bg-white">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
+        <div className="text-center mb-12" data-aos="fade-down">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Our Professional Services</h2>
           <p className="text-gray-600 max-w-3xl mx-auto">
             Beyond supplying materials, we provide expert installation services for complete solutions.
@@ -54,9 +60,9 @@ function Services() {
         </div>
 
         {services.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service) => (
-              <ServiceCard key={service._id} service={service} />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" data-aos="fade-left" data-aos-delay="200">
+            {services.map((service, index) => (
+              <ServiceCard key={service._id} service={service} index={index} />
             ))}
           </div>
         ) : (

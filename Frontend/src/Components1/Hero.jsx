@@ -1,7 +1,16 @@
-import React from 'react';
-import Navbar from './Navbar'; // Make sure Navbar is in the same folder or update the path
+import React, { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import Navbar from './Navbar'; // Make sure this path is correct
 
 const LandingPage = () => {
+    useEffect(() => {
+        AOS.init({
+            duration: 1000, // Animation duration in ms
+            once: true,     // Whether animation should happen only once
+        });
+    }, []);
+
     return (
         <div className="landing-page">
 
@@ -14,14 +23,28 @@ const LandingPage = () => {
                     backgroundPosition: 'center',
                 }}
             >
-                <div className="container mx-auto px-4 text-center">
-                    <h1 className="text-4xl md:text-6xl font-bold mb-6">Building Strong Foundations</h1>
-                    <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
+                <div className="container mx-auto px-4 text-center" data-aos="fade-up">
+                    <h1
+                        className="text-4xl md:text-6xl font-bold mb-6"
+                        data-aos="zoom-in"
+                        data-aos-delay="100"
+                    >
+                        Building Strong Foundations
+                    </h1>
+                    <p
+                        className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto"
+                        data-aos="fade-up"
+                        data-aos-delay="300"
+                    >
                         Premium quality TMT bars, cement, steel fencing, roofing solutions, and natural stone flooring
                     </p>
-                    <div className="flex flex-col sm:flex-row justify-center gap-4">
+                    <div
+                        className="flex flex-col sm:flex-row justify-center gap-4"
+                        data-aos="fade-up"
+                        data-aos-delay="500"
+                    >
                         <a
-                            href="#products"
+                            href="#product"
                             className="bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold py-3 px-6 rounded-lg transition duration-300"
                         >
                             Our Products <i className="fas fa-arrow-right ml-2"></i>

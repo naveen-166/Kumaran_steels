@@ -5,7 +5,8 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const serviceRoutes = require('./Routes/services.js');
 const productRoutes=require('./Routes/Product.js')
-const authRoutes=require('./Routes/Auth.js')
+const authRoutes=require('./Routes/Auth.js');
+const contactRoutes=require('./Routes/contact.js')
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ app.use(express.json());
 app.use('/services', serviceRoutes);
 app.use('/api',productRoutes)
 app.use('/ad',authRoutes);
+app.use('/contact',contactRoutes);
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
