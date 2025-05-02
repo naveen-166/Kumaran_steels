@@ -6,11 +6,13 @@ import ServiceUpdater from './Components1/Services/ServiceUpdater'
 import ProductList from './Components1/ProductManagment/ProductList'
 import AdminPanel from './Components1/AdminPanel';
 import Login from './Components1/Login';
+import EnquireDisplay from './Components1/EnquireDisplay';
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<BaseRoute />} />
+        <Route path="/ad/request" element={<EnquireDisplay/>} />
         <Route path="/products/:productId" element={<ProductDetails />} />
         <Route path="/services/:id" element={<ServiceDetail />} />
         <Route path="/ad/adminlogin" element={<Login/>}/>

@@ -1,4 +1,3 @@
-// pages/Login.js
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import Lottie from 'lottie-react';
@@ -22,19 +21,22 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [successMessage, setSuccessMessage] = useState(false);
   const [ipLocation, setIpLocation] = useState(null);
-  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
-  const { setemail, setname, setislogged } = useContext(Authcontext);
+  const navigate = useNavigate();
+  const { setemail, setname, setislogged ,islogged} = useContext(Authcontext);
 
   useEffect(() => {
+    if (islogged) {
+      navigate('/admin-panel');
+    }
     setCaptcha(generateCaptcha(6));
     AOS.init();
     fetchIpLocation();
-  }, []);
-
+  }, [islogged, navigate]);
   const fetchIpLocation = async () => {
     try {
-      const response = await axios.get('https://ipinfo.io/json'); 
+      const response = await axios.get('https://ipinfo.io/json');
       setIpLocation({
         ip: response.data.ip,
         city: response.data.city,
@@ -56,6 +58,8 @@ const Login = () => {
       return;
     }
 
+    setLoading(true); // Start loading
+
     try {
       const response = await axios.post('http://localhost:4000/ad/login', {
         email,
@@ -72,12 +76,10 @@ const Login = () => {
 
       const user = response.data.user;
 
-      // Store in localStorage
       localStorage.setItem('islogged', 'true');
       localStorage.setItem('email', user.email);
       localStorage.setItem('name', user.name);
 
-      // Set context values
       setemail(user.email);
       setname(user.name);
       setislogged(true);
@@ -90,6 +92,8 @@ const Login = () => {
     } catch (error) {
       console.error('Login error:', error);
       alert(error.response?.data?.message || 'Login failed');
+    } finally {
+      setLoading(false); // Stop loading
     }
   };
 
@@ -170,8 +174,42 @@ const Login = () => {
             <a href="/forgot-password" className="hover:underline">Forgot password?</a>
           </div>
 
-          <button type="submit" className="w-full py-2 mt-4 bg-green-500 text-white rounded-lg hover:bg-green-600">
-            Login
+          <button
+            type="submit"
+            disabled={loading}
+            className={`w-full py-2 mt-4 rounded-lg text-white flex items-center justify-center gap-2 transition ${
+              loading
+                ? 'bg-gray-400 cursor-not-allowed'
+                : 'bg-green-500 hover:bg-green-600'
+            }`}
+          >
+            {loading ? (
+              <>
+                <svg
+                  className="animate-spin h-5 w-5 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  />
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8v8H4z"
+                  />
+                </svg>
+                Logging in...
+              </>
+            ) : (
+              'Login'
+            )}
           </button>
         </form>
       </div>

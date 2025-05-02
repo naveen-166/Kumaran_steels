@@ -1,65 +1,3 @@
-// const express = require('express');
-// const router = express.Router();
-// const Service = require('../Model/Services');
-
-// // GET all services
-// router.get('/', async (req, res) => {
-//   try {
-//     const services = await Service.find();
-//     res.json(services);
-//   } catch (error) {
-//     res.status(500).json({ message: error.message });
-//   }
-// });
-
-// // GET single service
-// router.get('/:id', async (req, res) => {
-//   try {
-//     const service = await Service.findById(req.params.id);
-//     if (!service) return res.status(404).json({ message: 'Not found' });
-//     res.json(service);
-//   } catch (error) {
-//     res.status(500).json({ message: error.message });
-//   }
-// });
-
-// // CREATE new service
-// router.post('/', async (req, res) => {
-//   try {
-//     const newService = new Service(req.body);
-//     await newService.save();
-//     res.status(201).json(newService);
-//   } catch (error) {
-//     res.status(400).json({ message: error.message });
-//   }
-// });
-
-// // UPDATE service
-// router.put('/:id', async (req, res) => {
-//   try {
-//     const updatedService = await Service.findByIdAndUpdate(
-//       req.params.id,
-//       req.body,
-//       { new: true }
-//     );
-//     res.json(updatedService);
-//   } catch (error) {
-//     res.status(400).json({ message: error.message });
-//   }
-// });
-
-// // DELETE service
-// router.delete('/:id', async (req, res) => {
-//   try {
-//     await Service.findByIdAndDelete(req.params.id);
-//     res.json({ message: 'Service deleted' });
-//   } catch (error) {
-//     res.status(500).json({ message: error.message });
-//   }
-// });
-
-// module.exports = router;
-
 const express = require('express');
 const router = express.Router();
 const Product = require('../Model/Services');
@@ -81,20 +19,18 @@ router.get('/:productId', async (req, res) => {
   }
 });
 
-// Add new product
 router.post('/', async (req, res) => {
   const newProduct = new Product(req.body);
   await newProduct.save();
   res.json(newProduct);
 });
 
-// Update product
 router.put('/:productId', async (req, res) => {
   const updated = await Product.findByIdAndUpdate(req.params.productId, req.body, { new: true });
   res.json(updated);
 });
 
-// Delete product
+
 router.delete('/:productId', async (req, res) => {
   await Product.findByIdAndDelete(req.params.productId);
   res.json({ message: 'Product deleted' });
