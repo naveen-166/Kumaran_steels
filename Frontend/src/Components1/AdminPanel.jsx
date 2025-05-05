@@ -51,7 +51,6 @@ const AdminPanel = () => {
     { name: 'Update Services', path: '/admin/update-services' },
     { name: 'Update Products', path: '/admin/update-products' },
     { name: 'Callback Requests', path: '/ad/request' },
-    { name: 'Login Activities', path: '/admin/login-activities' },
   ];
 
   return (

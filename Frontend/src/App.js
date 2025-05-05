@@ -19,6 +19,7 @@ function App() {
         <Route path="/admin-panel" element={<AdminPanel/>}/>
         <Route path="/admin/update-services" element={<ServiceUpdater/>}/>
         <Route path="/admin/update-products" element={<ProductList/>}/>
+        <Route path='/*' element={<BaseRoute/>}/>
       </Routes>
     </Router>
   );
