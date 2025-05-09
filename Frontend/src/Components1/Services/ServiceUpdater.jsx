@@ -4,6 +4,7 @@ import ProductForm from './ProductForm';
 import SampleImageManager from './SampleImageManager';
 import { Authcontext } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { axiosClient } from '../../AxiosClient';
 
 function Service() {
   const { islogged } = useContext(Authcontext);
@@ -26,7 +27,7 @@ function Service() {
   const fetchProducts = async () => {
     try {
       setLoading(true);
-      const res = await axios.get('http://localhost:4000/services');
+      const res = await axiosClient.get('services');
       setProducts(res.data);
     } catch (err) {
       console.error("Error fetching services:", err);
@@ -38,10 +39,10 @@ function Service() {
   const handleCreateOrUpdate = async (product) => {
     try {
       if (product._id) {
-        const res = await axios.put(`http://localhost:4000/services/${product._id}`, product);
+        const res = await axiosClient.put(`services/${product._id}`, product);
         setProducts(products.map(p => (p._id === product._id ? res.data : p)));
       } else {
-        const res = await axios.post('http://localhost:4000/services', product);
+        const res = await axiosClient.post('services', product);
         setProducts([...products, res.data]);
       }
       setEditingProduct(null);
@@ -53,7 +54,7 @@ function Service() {
   const handleDelete = async (productId) => {
     try {
       if (window.confirm('Are you sure you want to delete this service?')) {
-        await axios.delete(`http://localhost:4000/services/${productId}`);
+        await axiosClient.delete(`services/${productId}`);
         setProducts(products.filter(p => p._id !== productId));
       }
     } catch (err) {

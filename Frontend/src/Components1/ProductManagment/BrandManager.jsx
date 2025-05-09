@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { axiosClient } from '../../AxiosClient';
 
 function BrandManager({ product, onRefresh }) {
   const [brandData, setBrandData] = useState({ name: '', img: '', grade: '', tags: '' });
 
   const handleAddBrand = async () => {
     const brand = { ...brandData, tags: brandData.tags.split(',').map(t => t.trim()) };
-    await axios.post(`http://localhost:4000/api/${product._id}/brands`, brand);
+    await axiosClient.post(`api/${product._id}/brands`, brand);
     setBrandData({ name: '', img: '', grade: '', tags: '' });
     onRefresh();
   };
 
   const handleDeleteBrand = async (bid) => {
-    await axios.delete(`http://localhost:4000/api/${product._id}/brands/${bid}`);
+    await axiosClient.delete(`api/${product._id}/brands/${bid}`);
     onRefresh();
   };
 

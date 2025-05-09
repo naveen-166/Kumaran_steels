@@ -17,10 +17,10 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-app.use('/services', serviceRoutes);
-app.use('/api',productRoutes)
-app.use('/ad',authRoutes);
-app.use('/contact',contactRoutes);
+app.use('/api/services', serviceRoutes);
+app.use('/api/api',productRoutes)
+app.use('/api/ad',authRoutes);
+app.use('/api/contact',contactRoutes);
 
 app.use((err, req, res, next) => {
   console.error(err.stack);

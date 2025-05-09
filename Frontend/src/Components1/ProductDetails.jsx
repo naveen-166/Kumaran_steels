@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { axiosClient } from '../AxiosClient';
 
 export default function ProductDetails() {
   const { productId } = useParams();
@@ -10,7 +11,7 @@ export default function ProductDetails() {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const res = await axios.get(`http://localhost:4000/api/${productId}`);
+        const res = await axiosClient.get(`api/${productId}`);
         setProduct(res.data);
       } catch (err) {
         setError('Failed to fetch product details');

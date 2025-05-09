@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { axiosClient } from '../AxiosClient';
 
 function Contact() {
     const [formData, setFormData] = useState({
@@ -23,7 +24,7 @@ function Contact() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post('http://localhost:4000/contact', formData);
+            const res = await axiosClient.post('contact', formData);
             alert(res.data.message);
             setFormData({ name: '', email: '', category: '', phone: '', description: '' });
         } catch (err) {

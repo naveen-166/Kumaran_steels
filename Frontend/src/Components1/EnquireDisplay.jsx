@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { Authcontext } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { axiosClient } from '../AxiosClient';
 
 export default function EnquireDisplay() {
   const [requests, setRequests] = useState([]);
@@ -26,7 +27,7 @@ export default function EnquireDisplay() {
   const fetchData = async () => {
     try {
       setLoading(true);
-      const res = await axios.get('http://localhost:4000/contact/fetchRequests');
+      const res = await axiosClient.get('contact/fetchRequests');
       setRequests(res.data);
     } catch (err) {
       console.error('Error fetching requests:', err);
@@ -37,7 +38,7 @@ export default function EnquireDisplay() {
 
   const toggleStatus = async (id, currentStatus) => {
     try {
-      await axios.put(`http://localhost:4000/contact/updateStatus/${id}`, {
+      await axiosClient.put(`contact/updateStatus/${id}`, {
         status: !currentStatus,
       });
       setRequests((prev) =>

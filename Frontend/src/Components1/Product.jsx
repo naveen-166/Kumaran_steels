@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { Link } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { axiosClient } from '../AxiosClient';
 
 function Products() {
   const [products, setProducts] = useState([]);
@@ -12,7 +13,7 @@ function Products() {
 
     const fetchProducts = async () => {
       try {
-        const res = await axios.get('http://localhost:4000/api');
+        const res = await axiosClient.get('api');
         setProducts(res.data);
       } catch (err) {
         console.error("Failed to fetch products:", err);

@@ -36,7 +36,7 @@ const FooterNav = () => (
                 </a>
             ))}
         </div>
-        <p className="text-sm">&copy; 2023 Sri Kumaran Steels. All Rights Reserved.</p>
+        <p className="text-sm">&copy; 2025 Sri Kumaran Steels. All Rights Reserved.</p>
     </div>
 );
 

@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Authcontext } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { axiosClient } from '../AxiosClient';
 
 const AdminPanel = () => {
   const { name, islogged, setemail, setname, setislogged } = useContext(Authcontext);
@@ -15,7 +16,7 @@ const AdminPanel = () => {
 
   const fetchRequestData = async () => {
     try {
-      const res = await axios.get('http://localhost:4000/contact/fetchRequests');
+      const res = await axiosClient.get('contact/fetchRequests');
       const total = res.data.length;
       const completed = res.data.filter(item => item.status === true).length;
       const pending = res.data.filter(item => item.status === false).length;

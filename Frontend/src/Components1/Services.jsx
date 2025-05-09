@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { axiosClient } from '../AxiosClient';
 
 function Services() {
   const [services, setServices] = useState([]);
@@ -12,7 +13,7 @@ function Services() {
 
     const fetchServices = async () => {
       try {
-        const res = await axios.get('http://localhost:4000/services');
+        const res = await axiosClient.get('services');
         setServices(res.data);
       } catch (err) {
         console.error('Error fetching services:', err);

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { axiosClient } from '../../AxiosClient';
 
 function SampleImageManager({ product, onUpdate }) {
   const [newImage, setNewImage] = useState('');
@@ -7,7 +8,7 @@ function SampleImageManager({ product, onUpdate }) {
   const addSampleImage = async () => {
     if (!newImage) return;
     try {
-      await axios.post(`http://localhost:4000/services/${product._id}/sampleimage`, {
+      await axiosClient.post(`services/${product._id}/sampleimage`, {
         img: newImage,
       });
       setNewImage('');
@@ -19,7 +20,7 @@ function SampleImageManager({ product, onUpdate }) {
 
   const deleteSampleImage = async (sampleImageId) => {
     try {
-      await axios.delete(`http://localhost:4000/services/${product._id}/sampleimage/${sampleImageId}`);
+      await axiosClient.delete(`services/${product._id}/sampleimage/${sampleImageId}`);
       onUpdate();
     } catch (err) {
       console.error("Error deleting sample image:", err);

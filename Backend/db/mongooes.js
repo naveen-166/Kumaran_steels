@@ -1,3 +1,3 @@
 const mongoose=require('mongoose');
-const mongourl='mongodb://localhost:27017/kumaran'
+const mongourl='mongodb+srv://naveen_166:naveen123@resumeshortlist.nh03e.mongodb.net/kumaransteels'
 mongoose.connect(mongourl).then(()=>console.log("Database Connected")).catch(err=>{console.log(err)});

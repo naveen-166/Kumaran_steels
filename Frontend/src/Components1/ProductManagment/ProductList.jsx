@@ -3,6 +3,7 @@ import axios from 'axios';
 import BrandManager from './BrandManager';
 import { Authcontext } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { axiosClient } from '../../AxiosClient';
 
 export default function ProductList() {
   const { islogged } = useContext(Authcontext);
@@ -25,7 +26,7 @@ export default function ProductList() {
   const fetchProducts = async () => {
     try {
       setLoading(true);
-      const res = await axios.get('http://localhost:4000/api');
+      const res = await axiosClient.get('api');
       setProducts(res.data);
     } catch (error) {
       console.error("Error fetching products:", error);
@@ -37,7 +38,7 @@ export default function ProductList() {
   const handleAddProduct = async () => {
     try {
       const data = { ...newProduct, tags: newProduct.tags.split(',').map(t => t.trim()) };
-      await axios.post('http://localhost:4000/api/', data);
+      await axiosClient.post('api/', data);
       setNewProduct({ title: '', description: '', image: '', tags: '' });
       fetchProducts();
     } catch (error) {
@@ -47,7 +48,7 @@ export default function ProductList() {
 
   const handleUpdateProduct = async () => {
     try {
-      await axios.put(`http://localhost:4000/api/${selectedProduct._id}`, selectedProduct);
+      await axiosClient.put(`api/${selectedProduct._id}`, selectedProduct);
       fetchProducts();
       alert('Product updated!');
     } catch (error) {
@@ -58,7 +59,7 @@ export default function ProductList() {
   const handleDeleteProduct = async (id) => {
     if (window.confirm('Are you sure you want to delete this product?')) {
       try {
-        await axios.delete(`http://localhost:4000/api/${id}`);
+        await axiosClient.delete(`api/${id}`);
         fetchProducts();
       } catch (error) {
         console.error("Error deleting product:", error);

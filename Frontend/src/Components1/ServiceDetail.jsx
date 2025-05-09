@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, Link } from 'react-router-dom';
+import { axiosClient } from '../AxiosClient';
 
 function ServiceDetail() {
   const { id } = useParams();
@@ -9,7 +10,7 @@ function ServiceDetail() {
   useEffect(() => {
     const fetchService = async () => {
       try {
-        const res = await axios.get(`http://localhost:4000/services/${id}`);
+        const res = await axiosClient.get(`services/${id}`);
         setService(res.data);
       } catch (err) {
         console.error('Error fetching service:', err);

@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { Authcontext } from '../context/AuthContext';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { axiosClient } from '../AxiosClient';
 
 const generateCaptcha = (length) => {
   const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -61,7 +62,7 @@ const Login = () => {
     setLoading(true); // Start loading
 
     try {
-      const response = await axios.post('http://localhost:4000/ad/login', {
+      const response = await axiosClient.post('ad/login', {
         email,
         password,
         ip: ipLocation?.ip || 'Unknown',

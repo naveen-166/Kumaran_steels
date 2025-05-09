@@ -11,9 +11,9 @@ function ProductForm({ product, onSubmit, onCancel }) {
     }
   }, [product]);
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
+    const handleChange = (e) => {
+      setForm({ ...form, [e.target.name]: e.target.value });
+    };
 
   const handleTags = (e) => {
     setForm({ ...form, tags: e.target.value.split(',').map(t => t.trim()) });
