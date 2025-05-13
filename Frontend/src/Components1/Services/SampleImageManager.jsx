@@ -1,16 +1,24 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { axiosClient } from '../../AxiosClient';
 
 function SampleImageManager({ product, onUpdate }) {
   const [newImage, setNewImage] = useState('');
 
+  const handleSampleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setNewImage(reader.result);  // Base64
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   const addSampleImage = async () => {
     if (!newImage) return;
     try {
-      await axiosClient.post(`services/${product._id}/sampleimage`, {
-        img: newImage,
-      });
+      await axiosClient.post(`services/${product._id}/sampleimage`, { img: newImage });
       setNewImage('');
       onUpdate();
     } catch (err) {
@@ -30,6 +38,7 @@ function SampleImageManager({ product, onUpdate }) {
   return (
     <div className="mt-6">
       <h4 className="font-semibold text-gray-700 mb-2">Sample Images</h4>
+
       <div className="flex flex-wrap gap-3 mb-3">
         {product.simage?.map((s) => (
           <div key={s._id} className="relative group">
@@ -45,21 +54,27 @@ function SampleImageManager({ product, onUpdate }) {
         ))}
       </div>
 
-      <div className="flex gap-2">
+      <div className="flex gap-2 items-center">
         <input
-          type="text"
-          placeholder="New sample image URL"
-          value={newImage}
-          onChange={(e) => setNewImage(e.target.value)}
-          className="border border-gray-300 rounded-lg px-4 py-2 flex-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          type="file"
+          accept="image/*"
+          onChange={handleSampleImageUpload}
+          className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
         />
         <button
           onClick={addSampleImage}
-          className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-colors"
+          className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-colors duration-200"
         >
           Add
         </button>
       </div>
+
+      {newImage && (
+        <div className="mt-3">
+          <h5 className="text-sm font-medium text-gray-600 mb-1">Preview</h5>
+          <img src={newImage} alt="New Sample Preview" className="w-20 h-20 object-cover rounded-md shadow-sm" />
+        </div>
+      )}
     </div>
   );
 }
