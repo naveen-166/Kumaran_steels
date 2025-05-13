@@ -26,7 +26,7 @@ const BrandInfo = () => (
 const FooterNav = () => (
     <div className="flex flex-col items-center md:items-end">
         <div className="flex space-x-6 mb-4">
-            {["home", "products", "services", "about", "contact"].map((section) => (
+            {["home", "product", "services", "about", "contact"].map((section) => (
                 <a 
                     key={section} 
                     href={`#${section}`} 

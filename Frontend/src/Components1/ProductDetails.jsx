@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { Link, useParams } from 'react-router-dom';
 import { axiosClient } from '../AxiosClient';
 
 export default function ProductDetails() {
   const { productId } = useParams();
   const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -15,153 +16,125 @@ export default function ProductDetails() {
         setProduct(res.data);
       } catch (err) {
         setError('Failed to fetch product details');
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchProduct();
   }, [productId]);
 
-  if (error) return <div className="text-red-600">{error}</div>;
-  if (!product) return <div>Loading...</div>;
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-900">
+        <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    );
+  }
+
+  if (error || !product) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center bg-gray-900 text-white text-xl space-y-4">
+        <p>{error || 'Product not found.'}</p>
+        <a href="/products" className="underline text-blue-400 hover:text-blue-300">
+          Back to Products
+        </a>
+      </div>
+    );
+  }
 
   return (
-    <div className="min-h-screen font-[Montserrat] gradient-bg relative overflow-hidden">
-      {/* Background Decorations */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-32 h-32 rounded-full bg-blue-100 opacity-20 blur-xl"></div>
-        <div className="absolute bottom-10 right-20 w-40 h-40 rounded-full bg-green-100 opacity-20 blur-xl"></div>
-        <div className="absolute top-1/3 right-1/4 w-24 h-24 rounded-full bg-blue-200 opacity-10 blur-xl"></div>
-      </div>
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black font-sans text-white relative overflow-hidden">
+      {/* Hero Section */}
+      <section className="relative h-[100vh] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/30 via-purple-700/20 to-teal-500/20 backdrop-blur-sm z-0"></div>
+        <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
+          <span className="inline-block px-4 py-1 mb-4 rounded-full bg-blue-500/20 text-blue-300 text-sm uppercase tracking-wider border border-blue-500/30">
+            Product Details
+          </span>
+          <h1 className="text-5xl md:text-6xl font-extrabold leading-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-blue-200 to-teal-200">
+            {product.title}
+          </h1>
+          <p className="mt-6 text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
+            {product.description}
+          </p>
 
-      {/* Header */}
-      <div className="pt-7 px-6 text-center relative z-10">
-        <div className="inline-flex items-center justify-center bg-blue-600 text-white px-4 py-2 rounded-full mb-4 shadow-md">
-          <i className="fas fa-certificate mr-2"></i>
-          <span className="text-sm font-semibold">Product Details</span>
-        </div>
-        <h1 className="text-5xl font-bold text-gray-800 mb-3 glow-text">
-          {product.title}
-        </h1>
-        <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-          {product.description}
-        </p>
-      </div>
-
-      {/* Product Image */}
-      {/* <div className="flex justify-center items-center mt-6 relative z-10">
-        <img src={product.image} alt={product.title} className="h-96 object-contain shadow-lg rounded-lg" />
-      </div> */}
-
-      {/* Tags */}
-      {/* <div className="text-center mt-6">
-        <strong className="text-lg text-gray-800">Tags:</strong>
-        <div className="flex justify-center space-x-3 mt-2">
-          {product.tags.map((tag, index) => (
-            <span
-              key={index}
-              className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-semibold"
+          {/* Back to Products Button */}
+          <div className="mt-8">
+            <Link
+              to="/"
+              className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors"
             >
-              {tag}
-            </span>
-          ))}
+              <i className="fas fa-arrow-left"></i>
+              <span>Back to Products</span>
+            </Link>
+          </div>
         </div>
-      </div> */}
 
-      {/* Brand Grid */}
-      <div className="flex-1 px-6 pb-12 mt-10 flex items-center justify-center relative z-10">
-        {/* <h3 className="text-3xl font-bold text-gray-800 mb-6 text-center">Brands</h3> */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl w-full">
-          {product.brands && product.brands.length > 0 ? (
-            product.brands.map((brand) => (
-              <div key={brand._id} className="brand-card p-6 flex flex-col items-center justify-center">
-                <div className="h-24 mb-5 flex items-center relative">
-                  <img
-                    src={brand.img}
-                    alt={brand.name}
-                    className="h-full object-contain"
-                  />
-                  <div className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 bg-gray-500 text-white text-xs font-bold px-2 py-1 rounded">
-                    {brand.grade}
+        {/* Decorative floating shapes */}
+        <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl"></div>
+        <div className="absolute top-10 right-10 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl"></div>
+      </section>
+
+      {/* Brands Grid */}
+      <section className="py-20 px-6">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-teal-400">
+            Trusted Brands
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {product.brands && product.brands.length > 0 ? (
+              product.brands.map((brand) => (
+                <div
+                  key={brand._id}
+                  className="group relative p-6 rounded-2xl backdrop-blur-md bg-white/5 border border-white/10 shadow-lg hover:shadow-xl transition-all duration-300"
+                >
+                  <div className="flex flex-col items-center text-center">
+                    <div className="relative h-24 mb-6 flex items-center justify-center">
+                      <img
+                        src={brand.img}
+                        alt={brand.name}
+                        className="max-h-full object-contain opacity-90 group-hover:opacity-100 transition-opacity"
+                      />
+                      {/* <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-blue-500 to-teal-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">
+                        {brand.grade}
+                      </div> */}
+                    </div>
+                    <h4 className="text-2xl font-semibold text-white mb-3">{brand.name}</h4>
+                    <div className="flex flex-wrap justify-center gap-2 mt-2">
+                      {/* {brand.tags.map((tag, index) => (
+                        <span
+                          key={index}
+                          className={`text-xs px-3 py-1 rounded-full ${
+                            tag.toLowerCase().includes('corrosion') ||
+                            tag.toLowerCase().includes('ductility') ||
+                            tag.toLowerCase().includes('strength')
+                              ? 'bg-blue-500/20 text-blue-300'
+                              : 'bg-teal-500/20 text-teal-300'
+                          }`}
+                        >
+                          {tag}
+                        </span>
+                      ))} */}
+                    </div>
                   </div>
                 </div>
-                <h4 className="text-xl font-bold text-gray-800">{brand.name}</h4>
-                <div className="flex mt-3 space-x-1 flex-wrap justify-center">
-                  {brand.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className={`text-xs px-2 py-1 rounded ${
-                        tag.toLowerCase().includes('corrosion') ||
-                        tag.toLowerCase().includes('ductility') ||
-                        tag.toLowerCase().includes('strength')
-                          ? 'bg-blue-100 text-blue-800'
-                          : 'bg-green-100 text-green-800'
-                      }`}
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))
-          ) : (
-            <p>No brands available for this product.</p>
-          )}
+              ))
+            ) : (
+              <p className="col-span-full text-center text-gray-400 text-lg">No brands available for this product.</p>
+            )}
+          </div>
         </div>
-      </div>
+      </section>
 
-      {/* Floating CTA */}
-      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 bg-white rounded-full shadow-lg px-6 py-3 flex items-center justify-center space-x-2 z-20">
-        <i className="fas fa-phone-alt text-blue-600"></i>
-        <span className="text-sm font-semibold text-gray-800">
-          Contact for Best Prices:
-        </span>
-        <span className="text-blue-600 font-bold">+91 98435 11222</span>
-      </div>
-
-      {/* Extra styles */}
-      <style>{`
-        .brand-card {
-          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-          background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
-          border-radius: 16px;
-          position: relative;
-          overflow: hidden;
-          box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
-        }
-
-        .brand-card::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 5px;
-          background: linear-gradient(90deg, #3b82f6, #10b981);
-        }
-
-        .brand-card:hover {
-          transform: translateY(-8px);
-          box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-
-        .gradient-bg {
-          background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-        }
-
-        .pulse {
-          animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-          0% { transform: scale(1); }
-          50% { transform: scale(1.05); }
-          100% { transform: scale(1); }
-        }
-
-        .glow-text {
-          text-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
-        }
-      `}</style>
+      {/* Floating Contact Footer */}
+      <footer className="fixed bottom-6 left-1/2 transform -translate-x-1/2 backdrop-blur-md bg-black/30 border border-white/10 rounded-full px-6 py-3 shadow-lg z-50">
+        <div className="flex items-center justify-center gap-3">
+          <i className="fas fa-phone-alt text-blue-400"></i>
+          <span className="text-sm text-gray-300">Contact for Best Prices:</span>
+          <a href="tel:+919843511222" className="text-blue-400 font-semibold">+91 98435 11222</a>
+        </div>
+      </footer>
     </div>
   );
 }

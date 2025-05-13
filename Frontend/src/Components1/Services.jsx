@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -7,6 +6,7 @@ import { axiosClient } from '../AxiosClient';
 
 function Services() {
   const [services, setServices] = useState([]);
+  const [loading, setLoading] = useState(true); // Loading state
 
   useEffect(() => {
     AOS.init({ duration: 1000, once: true });
@@ -17,6 +17,8 @@ function Services() {
         setServices(res.data);
       } catch (err) {
         console.error('Error fetching services:', err);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -60,8 +62,16 @@ function Services() {
           <div className="w-20 h-1 bg-yellow-500 mx-auto mt-4"></div>
         </div>
 
-        {services.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" data-aos="fade-left" data-aos-delay="200">
+        {loading ? (
+          <div className="flex justify-center items-center h-40">
+            <div className="w-10 h-10 border-4 border-yellow-500 border-t-transparent rounded-full animate-spin"></div>
+          </div>
+        ) : services.length > 0 ? (
+          <div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            data-aos="fade-left"
+            data-aos-delay="200"
+          >
             {services.map((service, index) => (
               <ServiceCard key={service._id} service={service} index={index} />
             ))}

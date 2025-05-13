@@ -55,7 +55,6 @@ const Navbar = () => {
                     <a href="#product" className="hover:text-yellow-400 transition py-1">Products</a>
                     <a href="#services" className="hover:text-yellow-400 transition py-1">Services</a>
                     <a href="#about" className="hover:text-yellow-400 transition py-1">About Us</a>
-                    <a href="#testimonials" className="hover:text-yellow-400 transition py-1">Testimonials</a>
                     <a href="#contact" className="hover:text-yellow-400 transition py-1">Contact</a>
                 </div>
             </div>
