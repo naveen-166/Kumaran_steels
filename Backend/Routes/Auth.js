@@ -32,35 +32,39 @@ router.post('/register', async (req, res) => {
 
 // 🔐 LOGIN
 router.post('/login', async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, ip, location } = req.body;
 
   try {
-    // Find user
     const user = await User.findOne({ email });
     if (!user) return res.status(401).json({ message: 'User not found' });
 
-    // Check password
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.status(401).json({ message: 'Invalid password' });
 
-    // Add login session
-    user.loginHistory.push({
-      ip: req.ip,
+    // Create a login entry
+    const loginEntry = {
+      ip: ip || req.ip,
       location: {
-        city: 'Unknown',
-        region: 'Unknown',
-        country: 'Unknown',
-        latitude: 0,
-        longitude: 0
+        city: location?.city || 'Unknown',
+        region: location?.region || 'Unknown',
+        country: location?.country || 'Unknown',
+        latitude: location?.latitude || 0,
+        longitude: location?.longitude || 0
       }
-    });
+    };
+
+    // Push new login entry and maintain only last 5 logins
+    user.loginHistory.push(loginEntry);
+    if (user.loginHistory.length > 5) {
+      user.loginHistory = user.loginHistory.slice(-5); // keep last 5
+    }
 
     await user.save();
 
     res.status(200).json({
       message: 'Login successful',
       user: {
-        name: user.name || 'Guest',
+        name: user.name,
         email: user.email,
         loginHistory: user.loginHistory
       }

@@ -16,7 +16,6 @@ function Footer() {
 const BrandInfo = () => (
     <div className="mb-4 md:mb-0 text-center md:text-left">
         <div className="flex items-center justify-center md:justify-start">
-            <i className="fas fa-industry text-2xl text-yellow-500 mr-2"></i>
             <h2 className="text-xl font-bold">Sri Kumaran Steels</h2>
         </div>
         <p className="text-sm mt-2">Building the future with strength and reliability</p>

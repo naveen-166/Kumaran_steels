@@ -12,7 +12,7 @@ const LandingPage = () => {
     }, []);
 
     return (
-        <div className="landing-page">
+        <div className="landing-page max-w-screen">
 
             <section
                 id="home"
@@ -29,7 +29,7 @@ const LandingPage = () => {
                         data-aos="zoom-in"
                         data-aos-delay="100"
                     >
-                        Building Strong Foundations
+                        Sri Kumaran Steels
                     </h1>
                     <p
                         className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto"
