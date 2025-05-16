@@ -79,7 +79,7 @@ export default function EnquireDisplay() {
         <div className="flex flex-col md:flex-row items-center justify-between mb-10 gap-4">
           <svg
   fill="#7c7979"
-  className='size-9 ml-1 hover:cursor-pointer hover:scale-105'
+  className='size-9 ml-1 fill-gray-700 hover:cursor-pointer hover:scale-105 hover:bg-gray-200 rounded-2xl'
   version="1.1"
   id="Capa_1"
   xmlns="http://www.w3.org/2000/svg"

@@ -75,7 +75,7 @@ function Service() {
       <div className="text-center mb-10 max-w-3xl mx-auto">
         <div className='flex '>
         <svg
-  className="w-10 h-10 fill-gray-700 hover:scale-105 transition-all duration-200 cursor-pointer"
+  className='size-9 ml-1 fill-gray-700 hover:cursor-pointer hover:scale-105 hover:bg-gray-200 rounded-2xl'
   xmlns="http://www.w3.org/2000/svg"
   viewBox="0 0 219.151 219.151"
   onClick={() => navigate('/admin-panel')}
