@@ -1,9 +1,4 @@
 const mongoose = require('mongoose');
-const BasicUserSchema = new mongoose.Schema({
-  Email: { type: String },
-  password: { type: String }
-});
-
 const LoginSessionSchema = new mongoose.Schema({
   loginTime: { type: Date, default: Date.now },
   ip: String,

@@ -11,7 +11,7 @@ const productSchema = new mongoose.Schema({
   description: String,
   image: String,
   tags: [String],
-  simage: [SampleImagesSchema], // Array of sample images
+  simage: [SampleImagesSchema], 
 });
 
 const Product = mongoose.model('Service', productSchema);
