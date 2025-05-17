@@ -32,7 +32,7 @@ export default function EnquireDisplay() {
     } catch (err) {
       console.error('Error fetching requests:', err);
     } finally {
-      setTimeout(() => setLoading(false), 500); // Simulate loading delay for UX
+      setTimeout(() => setLoading(false),0);
     }
   };
 
@@ -78,20 +78,20 @@ export default function EnquireDisplay() {
         {/* Header */}
         <div className="flex flex-col md:flex-row items-center justify-between mb-10 gap-4">
           <svg
-  fill="#7c7979"
-  className='size-9 ml-1 fill-gray-700 hover:cursor-pointer hover:scale-105 hover:bg-gray-200 rounded-2xl'
-  version="1.1"
-  id="Capa_1"
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 219.151 219.151"
-  stroke="#7c7979"
-  onClick={()=>{navigate('/admin-panel')}}
->
-  <g>
-    <path d="M109.576,219.151c60.419,0,109.573-49.156,109.573-109.576C219.149,49.156,169.995,0,109.576,0S0.002,49.156,0.002,109.575 C0.002,169.995,49.157,219.151,109.576,219.151z M109.576,15c52.148,0,94.573,42.426,94.574,94.575 c0,52.149-42.425,94.575-94.574,94.576c-52.148-0.001-94.573-42.427-94.573-94.577C15.003,57.427,57.428,15,109.576,15z" />
-    <path d="M94.861,156.507c2.929,2.928,7.678,2.927,10.606,0c2.93-2.93,2.93-7.678-0.001-10.608l-28.82-28.819l83.457-0.008 c4.142-0.001,7.499-3.358,7.499-7.502c-0.001-4.142-3.358-7.498-7.5-7.498l-83.46,0.008l28.827-28.825 c2.929-2.929,2.929-7.679,0-10.607c-1.465-1.464-3.384-2.197-5.304-2.197c-1.919,0-3.838,0.733-5.303,2.196l-41.629,41.628 c-1.407,1.406-2.197,3.313-2.197,5.303c0.001,1.99,0.791,3.896,2.198,5.305L94.861,156.507z" />
-  </g>
-</svg>
+            fill="#7c7979"
+            className='size-9 ml-1 fill-gray-700 hover:cursor-pointer hover:scale-105 hover:bg-gray-200 rounded-2xl'
+            version="1.1"
+            id="Capa_1"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 219.151 219.151"
+            stroke="#7c7979"
+            onClick={() => { navigate('/admin-panel') }}
+          >
+            <g>
+              <path d="M109.576,219.151c60.419,0,109.573-49.156,109.573-109.576C219.149,49.156,169.995,0,109.576,0S0.002,49.156,0.002,109.575 C0.002,169.995,49.157,219.151,109.576,219.151z M109.576,15c52.148,0,94.573,42.426,94.574,94.575 c0,52.149-42.425,94.575-94.574,94.576c-52.148-0.001-94.573-42.427-94.573-94.577C15.003,57.427,57.428,15,109.576,15z" />
+              <path d="M94.861,156.507c2.929,2.928,7.678,2.927,10.606,0c2.93-2.93,2.93-7.678-0.001-10.608l-28.82-28.819l83.457-0.008 c4.142-0.001,7.499-3.358,7.499-7.502c-0.001-4.142-3.358-7.498-7.5-7.498l-83.46,0.008l28.827-28.825 c2.929-2.929,2.929-7.679,0-10.607c-1.465-1.464-3.384-2.197-5.304-2.197c-1.919,0-3.838,0.733-5.303,2.196l-41.629,41.628 c-1.407,1.406-2.197,3.313-2.197,5.303c0.001,1.99,0.791,3.896,2.198,5.305L94.861,156.507z" />
+            </g>
+          </svg>
 
           <h1 className="text-4xl font-extrabold text-blue-900 tracking-tight">Inquiry Requests</h1>
           <select
@@ -122,9 +122,8 @@ export default function EnquireDisplay() {
                 <div
                   key={req._id}
                   onClick={() => setSelectedRequest(req)}
-                  className={`bg-white rounded-2xl shadow-md overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer ${
-                    index % 2 === 0 ? 'animate-fade-in-up' : 'animate-fade-in-down'
-                  }`}
+                  className={`bg-white rounded-2xl shadow-md overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer ${index % 2 === 0 ? 'animate-fade-in-up' : 'animate-fade-in-down'
+                    }`}
                 >
                   <div className="p-6">
                     <h2 className="text-2xl font-semibold text-gray-800 mb-3">{req.name}</h2>
@@ -132,11 +131,10 @@ export default function EnquireDisplay() {
                     <p><strong className="text-gray-600">Phone:</strong> {req.phone}</p>
                     <p><strong className="text-gray-600">Category:</strong> {req.category}</p>
                     <span
-                      className={`inline-block mt-4 px-3 py-1 rounded-full text-sm font-medium ${
-                        req.status
+                      className={`inline-block mt-4 px-3 py-1 rounded-full text-sm font-medium ${req.status
                           ? 'bg-green-100 text-green-700'
                           : 'bg-yellow-100 text-yellow-700'
-                      }`}
+                        }`}
                     >
                       {req.status ? 'Completed' : 'Pending'}
                     </span>
@@ -151,11 +149,10 @@ export default function EnquireDisplay() {
                 <button
                   onClick={goToPrevPage}
                   disabled={currentPage === 1}
-                  className={`px-5 py-2 rounded-lg text-sm font-medium ${
-                    currentPage === 1
+                  className={`px-5 py-2 rounded-lg text-sm font-medium ${currentPage === 1
                       ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
                       : 'bg-blue-600 text-white hover:bg-blue-700'
-                  } transition`}
+                    } transition`}
                 >
                   Previous
                 </button>
@@ -165,11 +162,10 @@ export default function EnquireDisplay() {
                 <button
                   onClick={goToNextPage}
                   disabled={currentPage === totalPages}
-                  className={`px-5 py-2 rounded-lg text-sm font-medium ${
-                    currentPage === totalPages
+                  className={`px-5 py-2 rounded-lg text-sm font-medium ${currentPage === totalPages
                       ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
                       : 'bg-blue-600 text-white hover:bg-blue-700'
-                  } transition`}
+                    } transition`}
                 >
                   Next
                 </button>
@@ -201,11 +197,10 @@ export default function EnquireDisplay() {
                   <div>
                     <strong className="text-gray-800">Status:</strong>{' '}
                     <span
-                      className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${
-                        selectedRequest.status
+                      className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${selectedRequest.status
                           ? 'bg-green-100 text-green-700'
                           : 'bg-yellow-100 text-yellow-700'
-                      }`}
+                        }`}
                     >
                       {selectedRequest.status ? 'Completed' : 'Pending'}
                     </span>
@@ -217,11 +212,10 @@ export default function EnquireDisplay() {
                     onClick={() =>
                       toggleStatus(selectedRequest._id, selectedRequest.status)
                     }
-                    className={`px-5 py-2 rounded-lg font-medium text-white transition ${
-                      selectedRequest.status
+                    className={`px-5 py-2 rounded-lg font-medium text-white transition ${selectedRequest.status
                         ? 'bg-yellow-500 hover:bg-yellow-600'
                         : 'bg-green-600 hover:bg-green-700'
-                    }`}
+                      }`}
                   >
                     Mark as {selectedRequest.status ? 'Pending' : 'Completed'}
                   </button>

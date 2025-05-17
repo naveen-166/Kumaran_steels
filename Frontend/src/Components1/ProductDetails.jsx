@@ -128,13 +128,14 @@ export default function ProductDetails() {
       </section>
 
       {/* Floating Contact Footer */}
-      <footer className="fixed bottom-6 left-1/2 transform -translate-x-1/2 backdrop-blur-md bg-black/30 border border-white/10 rounded-full px-6 py-3 shadow-lg z-50">
-        <div className="flex items-center justify-center gap-3">
+      <footer className="fixed bottom-6 left-1/2 transform -translate-x-1/2 w-full max-w-[90%] backdrop-blur-md bg-black/30 border border-white/10 rounded-full px-6 py-3 shadow-lg z-50">
+        <div className="flex items-center justify-center gap-3 flex-wrap">
           <i className="fas fa-phone-alt text-blue-400"></i>
           <span className="text-sm text-gray-300">Contact for Best Prices:</span>
           <a href="tel:+919843511222" className="text-blue-400 font-semibold">+91 98435 11222</a>
         </div>
       </footer>
+
     </div>
   );
 }

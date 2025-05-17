@@ -84,8 +84,8 @@ export default function Contact() {
                 322/13, Kanji Kovil Road, Near Bypass, Perundurai
               </ContactInfo>
               <ContactInfo icon="fas fa-phone-alt" title="Phone Number">
-                <p>+91 98435 11222</p>
-                <p>+91 70107 48292</p>
+                <a href="tel:+919843511222">+91 98435 11222</a><br />
+                <a href="tel:+917010748292">+91 70107 48292</a>
               </ContactInfo>
               <ContactInfo icon="fas fa-envelope" title="Email Address">
                 <p>srikumaransteels2022@gmail.com</p>
@@ -165,39 +165,39 @@ export default function Contact() {
       </div>
 
       {/* Success Modal */}
-{showSuccessModal && (
-  <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 animate-fadeIn">
-    <div className="bg-gradient-to-br from-gray-900 to-gray-800 text-white rounded-2xl overflow-hidden shadow-2xl max-w-lg w-full transform transition-all scale-100 animate-scaleIn">
-      <div className="flex justify-between items-center px-6 py-4 border-b border-gray-700">
-        <h2 className="text-2xl font-semibold flex items-center justify-self-center">
-          Sent Successfully!
-        </h2>
-        <button onClick={() => setShowSuccessModal(false)} className="text-gray-400 hover:text-white transition">
-          <i className="fas fa-times text-xl"></i>
-        </button>
-      </div>
-      <div className="p-6 flex flex-col items-center gap-6">
-        {/* Animated Illustration */}
-        <div className="w-32 h-32 p-4 rounded-full bg-blue-500/20 flex items-center justify-center animate-pulse">
-<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 2C6.4898 2 2 6.4898 2 12C2 17.5102 6.4898 22 12 22C17.5102 22 22 17.5102 22 12C22 6.4898 17.5102 2 12 2ZM15.5714 10.4694L11.4898 14.551C11.2857 14.6531 11.1837 14.7551 10.9796 14.7551C10.7755 14.7551 10.5714 14.6531 10.4694 14.551L8.42857 12.5102C8.12245 12.2041 8.12245 11.6939 8.42857 11.3878C8.73469 11.0816 9.2449 11.0816 9.55102 11.3878L11.0816 12.9184L14.6531 9.34694C14.9592 9.04082 15.4694 9.04082 15.7755 9.34694C15.8776 9.7551 15.8776 10.1633 15.5714 10.4694Z" fill="#2fd22d"></path> </g></svg>
-        </div>
+      {showSuccessModal && (
+        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 animate-fadeIn">
+          <div className="bg-gradient-to-br from-gray-900 to-gray-800 text-white rounded-2xl overflow-hidden shadow-2xl max-w-lg w-full transform transition-all scale-100 animate-scaleIn">
+            <div className="flex justify-between items-center px-6 py-4 border-b border-gray-700">
+              <h2 className="text-2xl font-semibold flex items-center justify-self-center">
+                Sent Successfully!
+              </h2>
+              <button onClick={() => setShowSuccessModal(false)} className="text-gray-400 hover:text-white transition">
+                <i className="fas fa-times text-xl"></i>
+              </button>
+            </div>
+            <div className="p-6 flex flex-col items-center gap-6">
+              {/* Animated Illustration */}
+              <div className="w-32 h-32 p-4 rounded-full bg-blue-500/20 flex items-center justify-center animate-pulse">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 2C6.4898 2 2 6.4898 2 12C2 17.5102 6.4898 22 12 22C17.5102 22 22 17.5102 22 12C22 6.4898 17.5102 2 12 2ZM15.5714 10.4694L11.4898 14.551C11.2857 14.6531 11.1837 14.7551 10.9796 14.7551C10.7755 14.7551 10.5714 14.6531 10.4694 14.551L8.42857 12.5102C8.12245 12.2041 8.12245 11.6939 8.42857 11.3878C8.73469 11.0816 9.2449 11.0816 9.55102 11.3878L11.0816 12.9184L14.6531 9.34694C14.9592 9.04082 15.4694 9.04082 15.7755 9.34694C15.8776 9.7551 15.8776 10.1633 15.5714 10.4694Z" fill="#2fd22d"></path> </g></svg>
+              </div>
 
-        {/* Text Content */}
-        <div className="text-center">
-          <p className="text-gray-300 mb-6 leading-relaxed">
-            Thank you for reaching out! We've received your message and will get back to you shortly.
-          </p>
-          <button
-            onClick={() => setShowSuccessModal(false)}
-            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-transform hover:scale-105 focus:outline-none"
-          >
-            Close
-          </button>
+              {/* Text Content */}
+              <div className="text-center">
+                <p className="text-gray-300 mb-6 leading-relaxed">
+                  Thank you for reaching out! We've received your message and will get back to you shortly.
+                </p>
+                <button
+                  onClick={() => setShowSuccessModal(false)}
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-transform hover:scale-105 focus:outline-none"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
-)}
+      )}
     </section>
   );
 }

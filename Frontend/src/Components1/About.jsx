@@ -42,12 +42,12 @@ function About() {
         <div className="lg:w-1/2" data-aos="fade-left">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">About Sri Kumaran Steels</h2>
             <p className="text-gray-600 mb-4 leading-relaxed">
-                Established in 2022, Sri Kumaran Steels has been a trusted name in the construction materials industry, 
-                providing high-quality TMT bars, cement, steel fencing, roofing solutions, and natural stone flooring 
+                Established in 2022, Sri Kumaran Steels has been a trusted name in the construction materials industry,
+                providing high-quality TMT bars, cement, steel fencing, roofing solutions, and natural stone flooring
                 to builders, contractors, and homeowners across the region.
             </p>
             <p className="text-gray-600 mb-6 leading-relaxed">
-                With over 2 years of experience, we take pride in our commitment to quality, reliability, and customer 
+                With over 2 years of experience, we take pride in our commitment to quality, reliability, and customer
                 satisfaction. Our products meet all industry standards and are sourced from reputable manufacturers.
             </p>
             <div className="grid grid-cols-2 gap-4 mb-6">

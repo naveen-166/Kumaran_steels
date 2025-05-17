@@ -120,9 +120,8 @@ const AdminPanel = () => {
     <div className="min-h-screen flex bg-gradient-to-br from-gray-50 via-white to-blue-50 text-gray-900">
       {/* Sidebar */}
       <aside
-        className={`${
-          sidebarOpen ? 'w-64' : 'w-20'
-        } fixed inset-y-0 left-0 z-50 transform transition-all duration-300 ease-in-out h-screen bg-white shadow-xl flex flex-col`}
+        className={`${sidebarOpen ? 'w-64' : 'w-20'
+          } fixed inset-y-0 left-0 z-50 transform transition-all duration-300 ease-in-out h-screen bg-white shadow-xl flex flex-col`}
         onMouseEnter={() => window.innerWidth >= 768 && setSidebarOpen(true)}
         onMouseLeave={() => window.innerWidth >= 768 && setSidebarOpen(false)}
       >
@@ -141,9 +140,8 @@ const AdminPanel = () => {
             >
               <span className="text-indigo-600 group-hover:text-indigo-800">{item.icon}</span>
               <span
-                className={`ml-4 whitespace-nowrap overflow-hidden transition-all duration-300 ${
-                  sidebarOpen ? 'opacity-100 w-40' : 'opacity-0 w-0'
-                }`}
+                className={`ml-4 whitespace-nowrap overflow-hidden transition-all duration-300 ${sidebarOpen ? 'opacity-100 w-40' : 'opacity-0 w-0'
+                  }`}
               >
                 {item.name}
               </span>
@@ -165,7 +163,7 @@ const AdminPanel = () => {
               <HiArrowLeft size={20} />
             </button>
             <h2 className="text-2xl font-semibold text-gray-800">Dashboard</h2>
-            <p className=' text-sm underline hover:cursor-pointer' onClick={()=>{navigate('/')}}>Go to Home</p>
+            <p className=' text-sm underline hover:cursor-pointer' onClick={() => { navigate('/') }}>Go to Home</p>
           </div>
           <div className="flex items-center space-x-4">
             <div className="relative">

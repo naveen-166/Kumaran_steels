@@ -26,9 +26,9 @@ const FooterNav = () => (
     <div className="flex flex-col items-center md:items-end">
         <div className="flex space-x-6 mb-4">
             {["home", "product", "services", "about", "contact"].map((section) => (
-                <a 
-                    key={section} 
-                    href={`#${section}`} 
+                <a
+                    key={section}
+                    href={`#${section}`}
                     className="hover:text-yellow-400 transition capitalize"
                 >
                     {section}

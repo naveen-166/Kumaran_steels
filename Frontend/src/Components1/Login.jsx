@@ -29,22 +29,22 @@ const Login = () => {
     });
   }, [islogged, navigate]);
 
-const fetchIpLocation = async () => {
-  try {
-    const response = await axios.get('https://ipinfo.io/json?token=8c428c459560af');
-    setIpLocation({
-      ip: response.data.ip,
-      city: response.data.city,
-      region: response.data.region,
-      country: response.data.country_name || response.data.country || 'Unknown',
-      latitude: response.data.loc?.split(',')[0] || 0,
-      longitude: response.data.loc?.split(',')[1] || 0,
-    });
-  } catch (err) {
-    console.error('Failed to fetch IP/location:', err);
-    alert('Could not fetch IP location');
-  }
-};
+  const fetchIpLocation = async () => {
+    try {
+      const response = await axios.get('https://ipinfo.io/json?token=8c428c459560af');
+      setIpLocation({
+        ip: response.data.ip,
+        city: response.data.city,
+        region: response.data.region,
+        country: response.data.country_name || response.data.country || 'Unknown',
+        latitude: response.data.loc?.split(',')[0] || 0,
+        longitude: response.data.loc?.split(',')[1] || 0,
+      });
+    } catch (err) {
+      console.error('Failed to fetch IP/location:', err);
+      alert('Could not fetch IP location');
+    }
+  };
 
 
   const handleSubmit = async (e) => {
@@ -107,7 +107,7 @@ const fetchIpLocation = async () => {
 
       {/* Login Card with AOS animation */}
       <div data-aos="fade-up" className="max-w-md w-full bg-gray-800/70 backdrop-blur-md rounded-xl shadow-lg p-6 sm:p-8 space-y-6 z-10 transition-all duration-300">
-        
+
         {/* Company Title */}
         <div className="text-center">
           <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-white">
@@ -129,7 +129,7 @@ const fetchIpLocation = async () => {
           {/* Email */}
           <div data-aos="fade-up">
             <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">
-              Email Address
+              User_ID
             </label>
             <input
               id="email"
@@ -138,7 +138,7 @@ const fetchIpLocation = async () => {
               onChange={(e) => setEmail(e.target.value)}
               required
               className="appearance-none block w-full px-4 py-3 border border-gray-600 rounded-lg shadow-sm placeholder-gray-400 bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent transition duration-200"
-              placeholder="Enter email"
+              placeholder="Enter User ID"
             />
           </div>
 
@@ -159,11 +159,11 @@ const fetchIpLocation = async () => {
           </div>
 
           {/* Forgot Password */}
-          <div data-aos="fade-up" className="text-right">
+          {/* <div data-aos="fade-up" className="text-right">
             <a href="/forgot-password" className="text-sm font-medium text-gray-400 hover:text-gray-200 hover:underline transition duration-200">
               Forgot password?
             </a>
-          </div>
+          </div> */}
 
           {/* Remember Me */}
           <div data-aos=" fade-up" className="flex items-center">

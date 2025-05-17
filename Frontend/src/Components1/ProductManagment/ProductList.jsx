@@ -252,8 +252,8 @@ export default function ProductList() {
             </div>
             <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-2">{successMessage}</h3>
             <p className="text-gray-600 dark:text-gray-300 mb-6">
-              {successMessage === 'Service Updated!' 
-                ? 'The service has been successfully updated.' 
+              {successMessage === 'Service Updated!'
+                ? 'The service has been successfully updated.'
                 : 'A new service has been successfully added.'
               }
             </p>

@@ -48,10 +48,10 @@ function BrandManager({ product, onRefresh }) {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
         <input type="text" placeholder="Brand Name" value={brandData.name} onChange={e => setBrandData({ ...brandData, name: e.target.value })} className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" />
-        
+
         <input type="file" accept="image/*" onChange={handleImageChange} className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" />
         {imagePreview && <img src={imagePreview} alt="Preview" className="w-20 h-20 object-cover rounded-md mt-2" />}
-        
+
         <input type="text" placeholder="Grade" value={brandData.grade} onChange={e => setBrandData({ ...brandData, grade: e.target.value })} className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" />
         <input type="text" placeholder="Tags" value={brandData.tags} onChange={e => setBrandData({ ...brandData, tags: e.target.value })} className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" />
       </div>
