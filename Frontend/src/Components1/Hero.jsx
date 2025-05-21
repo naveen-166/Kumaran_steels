@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import Navbar from './Navbar'; // Make sure this path is correct
+import image from '../Assets/heroimage.jpg'; // Adjust the path as necessary
 
 const LandingPage = () => {
     useEffect(() => {
@@ -18,7 +18,7 @@ const LandingPage = () => {
                 id="home"
                 className="min-h-screen flex items-center justify-center text-white"
                 style={{
-                    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1591955506264-3f5a6834570a?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')`,
+                    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('${image}')`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                 }}

@@ -83,7 +83,7 @@ export default function Contact() {
               <ContactInfo icon="fas fa-map-marker-alt" title="Our Location">
                 322/13, Kanji Kovil Road, Near Bypass, Perundurai
               </ContactInfo>
-              <ContactInfo icon="fas fa-phone-alt" title="Phone Number">
+              <ContactInfo icon="fas fa-phone" title="Phone Number">
                 <a href="tel:+919843511222">+91 98435 11222</a><br />
                 <a href="tel:+917010748292">+91 70107 48292</a>
               </ContactInfo>
